@@ -56,6 +56,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'pangloss/vim-javascript'
 " Initialize plugin system
 call plug#end()
 
@@ -63,12 +64,21 @@ map <C-P> :Files <CR>
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+let g:NERDSpaceDelims = 1
+
+set lazyredraw
+
+set backspace=indent,eol,start
+
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 set wmh=0
 
-map <C-H> gT
-map <C-L> gt
+map <C-H> :bprevious<CR>
+map <C-L> :bnext<CR>
+nmap <leader>q :bp <BAR> bd #<CR>
+nmap <leader>T :enew<cr>
+
 
 map <Leader> <Plug>(easymotion-prefix)
 
@@ -79,6 +89,7 @@ let g:airline#extensions#tabline#enabled = 1
 syntax enable
 set background=dark
 colorscheme solarized
+let g:solarized_termcolors = 256  " New line!!
 
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
@@ -96,3 +107,9 @@ set updatetime=250
 let g:UltiSnipsExpandTrigger="<C-CR>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
+
