@@ -30,7 +30,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " On-demand loading
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
@@ -53,6 +53,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'pangloss/vim-javascript'
+Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
 " Initialize plugin system
 call plug#end()
 
@@ -106,3 +108,15 @@ let g:ale_linters = {
 
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
 
+set backupdir=~/.vim/swp
+set directory=~/.vim/swp
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
