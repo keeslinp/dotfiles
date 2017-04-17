@@ -18,6 +18,7 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'airblade/vim-gitgutter'
 
+Plug 'juanpabloaj/vim-istanbul'
 
 " Make sure you use single quotes
 
