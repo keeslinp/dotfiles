@@ -13,7 +13,8 @@
         "link": {
             "~/.dotfiles": "",
             "~/.vim": "vim",
-            "~/.vimrc": "vimrc"
+            "~/.vimrc": "vimrc",
+            "~/.config/nvim/init.vim": "vimrc",
         }
     },
     {

@@ -11,6 +11,8 @@ Plug 'easymotion/vim-easymotion'
 
 Plug 'tpope/vim-surround'
 
+Plug 'SirVer/ultisnips'
+
 
 Plug 'scrooloose/nerdcommenter'
 
@@ -19,6 +21,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'juanpabloaj/vim-istanbul'
+Plug 'rust-lang/rust.vim'
+
 
 " Make sure you use single quotes
 
@@ -103,6 +107,9 @@ vnoremap <C-S-k> :m '<-2<CR>gv=gv
 
 set updatetime=250
 
+let g:UltiSnipsExpandTrigger="<C-CR>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
