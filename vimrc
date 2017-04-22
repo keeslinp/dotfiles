@@ -3,20 +3,11 @@ call plug#begin('~/.config/vim/plugged')
 
 Plug 'w0rp/ale'
 
-Plug 'jiangmiao/auto-pairs'
-
 Plug 'haya14busa/incsearch.vim'
 
 Plug 'easymotion/vim-easymotion'
 
-Plug 'tpope/vim-surround'
-
-Plug 'SirVer/ultisnips'
-
-
 Plug 'scrooloose/nerdcommenter'
-
-Plug 'tpope/vim-fugitive'
 
 Plug 'airblade/vim-gitgutter'
 
@@ -36,25 +27,20 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-Plug 'fatih/vim-go', { 'tag': '*' }
-
-" Plugin options
-Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+Plug 'itchyny/lightline.vim'
 
 Plug 'yggdroot/indentline'
 
 
 
 Plug 'junegunn/fzf.vim'
-
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
 Plug 'pangloss/vim-javascript'
 Plug 'honza/vim-snippets'
@@ -72,8 +58,6 @@ set lazyredraw
 
 set backspace=indent,eol,start
 
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
 set wmh=0
 
 map <C-H> :bprevious<CR>
@@ -84,14 +68,14 @@ nmap <leader>T :enew<cr>
 
 map <Leader> <Plug>(easymotion-prefix)
 
-
-let g:airline_theme='solarized'
-let g:airline#extensions#tabline#enabled = 1
-
 syntax enable
 set background=dark
 colorscheme solarized
 let g:solarized_termcolors = 256  " New line!!
+
+let g:lightline = {
+			\ 'colorscheme': 'solarized',
+			\}
 
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
@@ -129,3 +113,10 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 set conceallevel=0
+let g:vim_json_syntax_conceal = 0
+
+set number
+set hid
+
+let g:deoplete#enable_at_startup = 1
+set clipboard=unnamed
