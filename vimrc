@@ -38,9 +38,7 @@ Plug 'itchyny/lightline.vim'
 
 Plug 'yggdroot/indentline'
 
-
-
-Plug 'junegunn/fzf.vim'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm i' }
 
 Plug 'pangloss/vim-javascript'
 Plug 'honza/vim-snippets'
