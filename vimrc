@@ -30,6 +30,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 " Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
