@@ -30,6 +30,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 " Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -38,9 +39,7 @@ Plug 'itchyny/lightline.vim'
 
 Plug 'yggdroot/indentline'
 
-
-
-Plug 'junegunn/fzf.vim'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm i' }
 
 Plug 'pangloss/vim-javascript'
 Plug 'honza/vim-snippets'
