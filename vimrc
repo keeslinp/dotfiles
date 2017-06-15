@@ -13,11 +13,9 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'rust-lang/rust.vim'
 
+Plug 'mxw/vim-jsx'
 
 " Make sure you use single quotes
-
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
 
 Plug 'altercation/vim-colors-solarized'
 
@@ -26,8 +24,6 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf.vim'
@@ -42,8 +38,8 @@ Plug 'yggdroot/indentline'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm i' }
 
 Plug 'pangloss/vim-javascript'
-Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
+Plug 'tpope/vim-fugitive'
 " Initialize plugin system
 call plug#end()
 
@@ -115,6 +111,6 @@ set conceallevel=0
 let g:vim_json_syntax_conceal = 0
 
 set number
-set hid
 
 let g:deoplete#enable_at_startup = 1
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
