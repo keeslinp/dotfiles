@@ -1,7 +1,10 @@
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/vim/plugged')
 
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
+
+Plug 'neomake/neomake'
+Plug 'benjie/neomake-local-eslint.vim'
 
 Plug 'haya14busa/incsearch.vim'
 
@@ -66,7 +69,7 @@ map <Leader> <Plug>(easymotion-prefix)
 syntax enable
 set background=dark
 colorscheme solarized
-let g:solarized_termcolors = 256  " New line!!
+" let g:solarized_termcolors = 256  " New line!!
 
 let g:lightline = {
 			\ 'colorscheme': 'solarized',
@@ -88,9 +91,12 @@ set updatetime=250
 let g:UltiSnipsExpandTrigger="<C-CR>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\}
+" let g:ale_linters = {
+" \   'javascript': ['eslint'],
+" \}
+
+let g:neomake_javascript_enabled_makers = ['eslint']
+autocmd! BufWritePost,BufEnter * Neomake
 
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
 
@@ -111,6 +117,7 @@ set conceallevel=0
 let g:vim_json_syntax_conceal = 0
 
 set number
+set synmaxcol=200
 
 let g:deoplete#enable_at_startup = 1
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
