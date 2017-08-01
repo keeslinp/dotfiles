@@ -3,6 +3,17 @@ call plug#begin('~/.config/vim/plugged')
 
 " Plug 'w0rp/ale'
 
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+
+" (Optional) Multi-entry selection UI.
+Plug 'Shougo/denite.nvim'
+
+" (Optional) Completion integration with nvim-completion-manager.
+Plug 'roxma/nvim-completion-manager'
+
+" (Optional) Showing function signature and inline doc.
+Plug 'Shougo/echodoc.vim'
+
 Plug 'neomake/neomake'
 Plug 'benjie/neomake-local-eslint.vim'
 
@@ -23,7 +34,7 @@ Plug 'mxw/vim-jsx'
 Plug 'altercation/vim-colors-solarized'
 
 " Multiple Plug commands can be written in a single line using | separators
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -38,10 +49,9 @@ Plug 'itchyny/lightline.vim'
 
 Plug 'yggdroot/indentline'
 
-Plug 'ternjs/tern_for_vim', { 'do': 'npm i' }
+" Plug 'ternjs/tern_for_vim', { 'do': 'npm i' }
 
 Plug 'pangloss/vim-javascript'
-Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
 " Initialize plugin system
 call plug#end()
@@ -122,3 +132,18 @@ set synmaxcol=200
 let g:deoplete#enable_at_startup = 1
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ }
+
+" Automatically start language servers.
+let g:LanguageClient_autoStart = 1
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
