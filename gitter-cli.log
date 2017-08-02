@@ -1,0 +1,4 @@
+{"level":"error","message":"Not possible to join the room: Error: 404: {\"error\":\"Not Found\"}","timestamp":"2017-04-17T16:31:05.856Z"}
+{"level":"error","message":"There was an error joining the room.","timestamp":"2017-04-17T16:31:05.857Z"}
+{"level":"info","message":"Joined room: joltup/frontend","timestamp":"2017-04-17T16:31:17.362Z"}
+{"level":"info","message":"Joined room: joltup/front-end-prod","timestamp":"2017-04-17T16:34:33.653Z"}
