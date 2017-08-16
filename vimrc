@@ -5,6 +5,8 @@ call plug#begin('~/.config/vim/plugged')
 
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
+Plug 'mileszs/ack.vim'
+
 " (Optional) Multi-entry selection UI.
 Plug 'Shougo/denite.nvim'
 
@@ -147,3 +149,8 @@ let g:LanguageClient_autoStart = 1
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+nnoremap <silent> <C-s> :call LanguageClient_textDocument_documentSymbol()<CR>
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep --ignore-dir dist'
+endif
