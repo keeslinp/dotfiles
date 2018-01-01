@@ -1,9 +1,11 @@
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/vim/plugged')
 
+Plug 'peterhoeg/vim-qml'
+
 " Plug 'w0rp/ale'
 
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' }
 
 " (Optional) Multi-entry selection UI.
 Plug 'Shougo/denite.nvim'
@@ -53,6 +55,9 @@ Plug 'yggdroot/indentline'
 
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-fugitive'
+" Note taking plugin
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-misc'
 " Initialize plugin system
 call plug#end()
 
@@ -101,14 +106,12 @@ set updatetime=250
 let g:UltiSnipsExpandTrigger="<C-CR>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" let g:ale_linters = {
-" \   'javascript': ['eslint'],
-" \}
 
 let g:neomake_javascript_enabled_makers = ['eslint']
 autocmd! BufWritePost,BufEnter * Neomake
 
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
+set ts=4 sts=4 sw=4 expandtab
 
 set backupdir=~/.vim/swp
 set directory=~/.vim/swp
@@ -127,7 +130,7 @@ set conceallevel=0
 let g:vim_json_syntax_conceal = 0
 
 set number
-set synmaxcol=200
+set synmaxcol=400
 
 let g:deoplete#enable_at_startup = 1
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
@@ -146,3 +149,10 @@ let g:LanguageClient_autoStart = 1
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+noremap <silent> <C-s> :call LanguageClient_textDocument_documentSymbol()<CR>
+
+let g:notes_directories = ['~/Dropbox/School Work/Fall 2017', '~/Dropbox/School Work/Fall 2017/ARTHC']
+autocmd BufRead,BufNewFile *.note setlocal spell
+let g:notes_suffix = '.note'
+
+compiler cargo
