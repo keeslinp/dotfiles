@@ -7,6 +7,8 @@ Plug 'peterhoeg/vim-qml'
 
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' }
 
+Plug 'mileszs/ack.vim'
+
 " (Optional) Multi-entry selection UI.
 Plug 'Shougo/denite.nvim'
 
@@ -156,3 +158,7 @@ autocmd BufRead,BufNewFile *.note setlocal spell
 let g:notes_suffix = '.note'
 
 compiler cargo
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep --ignore-dir dist'
+endif
