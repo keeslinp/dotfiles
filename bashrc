@@ -121,3 +121,5 @@ export RUST_SRC_PATH=/usr/local/src/rust/src
 PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/.arc_install/arcanist/bin
 alias vim="nvim"
+
+export TERMINAL=alacritty
