@@ -143,6 +143,7 @@ set hidden
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'java': ['java-lang-server'],
     \ }
 
 " Automatically start language servers.
@@ -153,8 +154,8 @@ nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 noremap <silent> <C-s> :call LanguageClient_textDocument_documentSymbol()<CR>
 
-let g:notes_directories = ['~/Dropbox/School Work/Fall 2017', '~/Dropbox/School Work/Fall 2017/ARTHC']
-autocmd BufRead,BufNewFile *.note setlocal syespell
+let g:notes_directories = ['~/Dropbox/School Work/Winter 2018/REL225/']
+autocmd BufRead,BufNewFile *.note setlocal spell
 let g:notes_suffix = '.note'
 
 compiler cargo

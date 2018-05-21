@@ -124,4 +124,3 @@ alias vim="nvim"
 export EDITOR="nvim"
 export VISUAL="nvim"
 set -o vi
-
