@@ -75,12 +75,6 @@ set backspace=indent,eol,start
 
 set wmh=0
 
-map <C-H> :bprevious<CR>
-map <C-L> :bnext<CR>
-nmap <leader>q :bp <BAR> bd #<CR>
-nmap <leader>T :enew<cr>
-
-
 map <Leader> <Plug>(easymotion-prefix)
 
 syntax enable
@@ -108,9 +102,6 @@ set updatetime=250
 let g:UltiSnipsExpandTrigger="<C-CR>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-let g:neomake_javascript_enabled_makers = ['eslint']
-autocmd! BufWritePost,BufEnter * Neomake
 
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
 set ts=4 sts=4 sw=4 expandtab

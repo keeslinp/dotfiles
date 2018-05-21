@@ -17,6 +17,7 @@
             "~/.config/nvim/init.vim": "vimrc",
             "~/.config/kitty/kitty.conf": "kitty.conf",
             "~/.bashrc": "bashrc",
+            "~/.tmux.conf": "tmux",
         }
     },
     {
