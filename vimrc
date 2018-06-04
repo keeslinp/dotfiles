@@ -3,7 +3,7 @@ call plug#begin('~/.config/vim/plugged')
 
 Plug 'peterhoeg/vim-qml'
 
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' }
 
@@ -17,9 +17,6 @@ Plug 'roxma/nvim-completion-manager'
 
 " (Optional) Showing function signature and inline doc.
 Plug 'Shougo/echodoc.vim'
-
-Plug 'neomake/neomake'
-Plug 'benjie/neomake-local-eslint.vim'
 
 Plug 'haya14busa/incsearch.vim'
 
@@ -154,3 +151,7 @@ compiler cargo
 if executable('ag')
   let g:ackprg = 'ag --vimgrep --ignore-dir dist'
 endif
+
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
