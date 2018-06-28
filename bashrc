@@ -124,3 +124,5 @@ alias vim="nvim"
 export EDITOR="nvim"
 export VISUAL="nvim"
 set -o vi
+
+alias tm="tmux new-session -A -s main"
