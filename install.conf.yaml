@@ -18,6 +18,7 @@
             "~/.config/kitty/kitty.conf": "kitty.conf",
             "~/.bashrc": "bashrc",
             "~/.tmux.conf": "tmux",
+            "~/.tmux-osx.conf": "tmux-osx.conf",
         }
     },
     {
