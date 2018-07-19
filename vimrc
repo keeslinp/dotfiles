@@ -142,6 +142,7 @@ nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> gr :call LanguageClient_textDocument_references()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 noremap <silent> <C-s> :call LanguageClient_textDocument_documentSymbol()<CR>
+nnoremap <silent> <F3> :call LanguageClient_textDocument_formatting()<CR>
 
 let g:notes_directories = ['~/Dropbox/School Work/Winter 2018/REL225/']
 autocmd BufRead,BufNewFile *.note setlocal spell
