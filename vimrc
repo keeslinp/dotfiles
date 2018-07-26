@@ -130,7 +130,7 @@ set hidden
 
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['typescript-language-server', '--stdio'],
     \ 'java': ['java-lang-server'],
     \ }
 
