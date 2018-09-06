@@ -120,6 +120,8 @@ fi
 export RUST_SRC_PATH=/usr/local/src/rust/src
 PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/.arc_install/arcanist/bin
+PATH=$PATH:~/.pub-cache/bin
+PATH=$PATH:/opt/dart-sdk-dev/bin
 alias vim="nvim"
 export EDITOR="nvim"
 export VISUAL="nvim"

@@ -1,6 +1,8 @@
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/vim/plugged')
 
+Plug 'dart-lang/dart-vim-plugin'
+
 Plug 'peterhoeg/vim-qml'
 
 Plug 'w0rp/ale'
@@ -11,9 +13,6 @@ Plug 'mileszs/ack.vim'
 
 " (Optional) Multi-entry selection UI.
 Plug 'Shougo/denite.nvim'
-
-" (Optional) Completion integration with nvim-completion-manager.
-Plug 'roxma/nvim-completion-manager'
 
 " (Optional) Showing function signature and inline doc.
 Plug 'Shougo/echodoc.vim'
@@ -132,6 +131,7 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
     \ 'java': ['java-lang-server'],
+    \ 'dart': ['dart_language_server'],
     \ }
 
 " Automatically start language servers.
@@ -157,3 +157,7 @@ endif
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \}
+
+
+let dart_style_guide = 2
+let dart_format_on_save = 1

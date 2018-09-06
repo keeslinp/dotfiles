@@ -1,4 +1,3 @@
-set-option -g default-command "reattach-to-user-namespace -l sh"
 # You probably already put this in
 set -g prefix C-a
 
