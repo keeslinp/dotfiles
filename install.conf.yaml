@@ -19,6 +19,7 @@
             "~/.bashrc": "bashrc",
             "~/.tmux.conf": "tmux",
             "~/.tmux-osx.conf": "tmux-osx.conf",
+            "~/scripts": "scripts",
         }
     },
     {

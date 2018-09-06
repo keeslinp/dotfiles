@@ -122,6 +122,7 @@ PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/.arc_install/arcanist/bin
 PATH=$PATH:~/.pub-cache/bin
 PATH=$PATH:/opt/dart-sdk-dev/bin
+PATH=$PATH:~/scripts
 alias vim="nvim"
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -131,3 +132,6 @@ alias tm="tmux new-session -A -s main"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export REACT_EDITOR=vim
+export REACT_EDITOR_CMD=/usr/local/bin/nvim
