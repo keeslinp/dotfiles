@@ -106,6 +106,7 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype c setlocal ts=2 sts=2 sw=2 expandtab
 set ts=4 sts=4 sw=4 expandtab
 
 set backupdir=~/.vim/swp
@@ -140,6 +141,7 @@ let g:LanguageClient_serverCommands = {
     \ 'dart': ['dart_language_server'],
     \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
     \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
+    \ 'python': ['pyls', '-v'],
     \ }
 
 let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
