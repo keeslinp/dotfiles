@@ -24,5 +24,6 @@ bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
 bind-key -T copy-mode-vi 'y' send-keys -X copy-selection-and-cancel
 
 if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux-osx.conf' 
+if-shell 'test "$(uname)" = "Linux"' 'source ~/.tmux-linux.conf' 
 
 run "resize-main-pane -p 70 -l main-vertical"

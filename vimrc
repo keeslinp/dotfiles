@@ -1,6 +1,12 @@
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/vim/plugged')
 
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+Plug 'idanarye/vim-vebugger'
+
+Plug 'vigemus/iron.nvim'
+
 Plug 'dart-lang/dart-vim-plugin'
 
 Plug 'peterhoeg/vim-qml'
@@ -132,8 +138,12 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript.jsx': ['typescript-language-server', '--stdio'],
     \ 'java': ['java-lang-server'],
     \ 'dart': ['dart_language_server'],
+    \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
+    \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
     \ }
 
+set completefunc=LanguageClient#complete
+set formatexpr=LanguageClient_textDocument_rangeFormatting()
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1
 
@@ -144,7 +154,7 @@ nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 noremap <silent> <C-s> :call LanguageClient_textDocument_documentSymbol()<CR>
 nnoremap <silent> <F3> :call LanguageClient_textDocument_formatting()<CR>
 
-let g:notes_directories = ['~/Dropbox/School Work/Winter 2018/REL225/']
+let g:notes_directories = ['~/Dropbox/School Work/Fall2018/ARTHC/notes/']
 autocmd BufRead,BufNewFile *.note setlocal spell
 let g:notes_suffix = '.note'
 
@@ -161,3 +171,5 @@ let g:ale_fixers = {
 
 let dart_style_guide = 2
 let dart_format_on_save = 1
+
+autocmd FileType make setlocal noexpandtab

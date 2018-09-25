@@ -19,7 +19,9 @@
             "~/.bashrc": "bashrc",
             "~/.tmux.conf": "tmux",
             "~/.tmux-osx.conf": "tmux-osx.conf",
+            "~/.tmux-linux.conf": "tmux-linux.conf",
             "~/scripts": "scripts",
+            "~/.config/nvim/settings.json": "nvim_settings.json",
         }
     },
     {
