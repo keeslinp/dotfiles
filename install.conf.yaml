@@ -16,6 +16,7 @@
             "~/.vimrc": "vimrc",
             "~/.config/nvim/init.vim": "vimrc",
             "~/.config/kitty/kitty.conf": "kitty.conf",
+            "~/.config/alacritty/alacritty.yml": "alacritty.yml",
             "~/.bashrc": "bashrc",
             "~/.tmux.conf": "tmux",
             "~/.tmux-osx.conf": "tmux-osx.conf",
