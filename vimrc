@@ -34,11 +34,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-" Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
 
 Plug 'yggdroot/indentline'
-
-" Plug 'ternjs/tern_for_vim', { 'do': 'npm i' }
 
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-fugitive'
