@@ -5,6 +5,7 @@ unbind-key C-b
 bind-key C-a send-prefix
 set -g mouse on
 set-option -s escape-time 10
+set-option -g default-terminal "screen-256color"
 
 bind-key -r w choose-window -F '#{window_index} | #{pane_current_command} | #{host} | #{pane_current_path}'
 set -g status-bg black
@@ -27,3 +28,15 @@ if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux-osx.conf'
 if-shell 'test "$(uname)" = "Linux"' 'source ~/.tmux-linux.conf' 
 
 run "resize-main-pane -p 70 -l main-vertical"
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-urlview'
+
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'git@github.com/user/plugin'
+# set -g @plugin 'git@bitbucket.com/user/plugin'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run -b '~/.tmux/plugins/tpm/tpm'

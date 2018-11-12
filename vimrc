@@ -1,27 +1,13 @@
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/vim/plugged')
 
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-
-Plug 'idanarye/vim-vebugger'
-
 Plug 'vigemus/iron.nvim'
-
-Plug 'dart-lang/dart-vim-plugin'
-
-Plug 'peterhoeg/vim-qml'
 
 Plug 'w0rp/ale'
 
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' }
 
 Plug 'mileszs/ack.vim'
-
-" (Optional) Multi-entry selection UI.
-Plug 'Shougo/denite.nvim'
-
-" (Optional) Showing function signature and inline doc.
-Plug 'Shougo/echodoc.vim'
 
 Plug 'haya14busa/incsearch.vim'
 
@@ -39,9 +25,6 @@ Plug 'mxw/vim-jsx'
 
 Plug 'altercation/vim-colors-solarized'
 
-" Multiple Plug commands can be written in a single line using | separators
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
@@ -51,7 +34,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
 
 Plug 'yggdroot/indentline'
 
@@ -82,7 +65,6 @@ map <Leader> <Plug>(easymotion-prefix)
 syntax enable
 set background=dark
 colorscheme solarized
-" let g:solarized_termcolors = 256  " New line!!
 
 let g:lightline = {
 			\ 'colorscheme': 'solarized',
@@ -101,26 +83,12 @@ vnoremap <C-S-k> :m '<-2<CR>gv=gv
 
 set updatetime=250
 
-let g:UltiSnipsExpandTrigger="<C-CR>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype c setlocal ts=2 sts=2 sw=2 expandtab
 set ts=4 sts=4 sw=4 expandtab
 
 set backupdir=~/.vim/swp
 set directory=~/.vim/swp
-
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 set conceallevel=0
 let g:vim_json_syntax_conceal = 0
@@ -164,16 +132,8 @@ let g:notes_suffix = '.note'
 
 compiler cargo
 
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep --ignore-dir dist'
-endif
-
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \}
-
-
-let dart_style_guide = 2
-let dart_format_on_save = 1
 
 autocmd FileType make setlocal noexpandtab
