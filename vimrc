@@ -1,6 +1,10 @@
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/vim/plugged')
 
+Plug 'reasonml-editor/vim-reason-plus'
+
+Plug 'gaalcaras/ncm-R'
+
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 Plug 'idanarye/vim-vebugger'
@@ -142,6 +146,8 @@ let g:LanguageClient_serverCommands = {
     \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
     \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
     \ 'python': ['pyls', '-v'],
+    \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
+    \ 'reason': ['reason-language-server.exe'],
     \ }
 
 let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
