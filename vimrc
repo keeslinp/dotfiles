@@ -5,7 +5,10 @@ Plug 'vigemus/iron.nvim'
 
 Plug 'w0rp/ale'
 
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' }
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' }
 
 Plug 'mileszs/ack.vim'
 
@@ -65,8 +68,15 @@ set background=dark
 colorscheme solarized
 
 let g:lightline = {
-			\ 'colorscheme': 'solarized',
-			\}
+    \ 'colorscheme': 'solarized',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'cocstatus': 'coc#status'
+    \ },
+    \}
 
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
@@ -100,29 +110,65 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 " Required for operations modifying multiple buffers like rename.
 set hidden
 
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'javascript.jsx': ['typescript-language-server', '--stdio'],
-    \ 'java': ['java-lang-server'],
-    \ 'dart': ['dart_language_server'],
-    \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
-    \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
-    \ 'python': ['pyls', '-v'],
-    \ }
+" let g:LanguageClient_serverCommands = {
+    " \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    " \ 'javascript.jsx': ['typescript-language-server', '--stdio'],
+    " \ 'java': ['java-lang-server'],
+    " \ 'dart': ['dart_language_server'],
+    " \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
+    " \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
+    " \ 'python': ['pyls', '-v'],
+    " \ }
 
-let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
-let g:LanguageClient_settingsPath = '~/.config/nvim/settings.json'
-set completefunc=LanguageClient#complete
-set formatexpr=LanguageClient_textDocument_rangeFormatting()
-" Automatically start language servers.
-let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+" let g:LanguageClient_settingsPath = '~/.config/nvim/settings.json'
+" set completefunc=LanguageClient#complete
+" set formatexpr=LanguageClient_textDocument_rangeFormatting()
+" " Automatically start language servers.
+" let g:LanguageClient_autoStart = 1
 
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> gr :call LanguageClient_textDocument_references()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-noremap <silent> <C-s> :call LanguageClient_textDocument_documentSymbol()<CR>
-nnoremap <silent> <F3> :call LanguageClient_textDocument_formatting()<CR>
+" nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+" nnoremap <silent> gr :call LanguageClient_textDocument_references()<CR>
+" nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+" noremap <silent> <C-s> :call LanguageClient_textDocument_documentSymbol()<CR>
+" nnoremap <silent> <F3> :call LanguageClient_textDocument_formatting()<CR>
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+inoremap <silent><expr> <c-n> coc#refresh()
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Setup formatexpr specified filetype(s).
+augroup mygroup
+  autocmd!
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+vmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+
+" Use `:Format` for format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` for fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+nnoremap <silent> <C-s> :<C-u>Denite coc-symbols<cr>
 
 let g:notes_directories = ['~/Dropbox/School Work/Fall2018/ARTHC/notes/']
 autocmd BufRead,BufNewFile *.note setlocal spell
