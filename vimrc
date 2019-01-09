@@ -1,6 +1,10 @@
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/vim/plugged')
 
+Plug 'reasonml-editor/vim-reason-plus'
+
+Plug 'gaalcaras/ncm-R'
+
 Plug 'vigemus/iron.nvim'
 
 Plug 'w0rp/ale'
@@ -109,30 +113,6 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " Required for operations modifying multiple buffers like rename.
 set hidden
-
-" let g:LanguageClient_serverCommands = {
-    " \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    " \ 'javascript.jsx': ['typescript-language-server', '--stdio'],
-    " \ 'java': ['java-lang-server'],
-    " \ 'dart': ['dart_language_server'],
-    " \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
-    " \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
-    " \ 'python': ['pyls', '-v'],
-    " \ }
-
-" let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
-" let g:LanguageClient_settingsPath = '~/.config/nvim/settings.json'
-" set completefunc=LanguageClient#complete
-" set formatexpr=LanguageClient_textDocument_rangeFormatting()
-" " Automatically start language servers.
-" let g:LanguageClient_autoStart = 1
-
-" nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-" nnoremap <silent> gr :call LanguageClient_textDocument_references()<CR>
-" nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-" noremap <silent> <C-s> :call LanguageClient_textDocument_documentSymbol()<CR>
-" nnoremap <silent> <F3> :call LanguageClient_textDocument_formatting()<CR>
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)

@@ -117,6 +117,7 @@ if ! shopt -oq posix; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 export RUST_SRC_PATH=/usr/local/src/rust/src
 PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/.arc_install/arcanist/bin
@@ -136,3 +137,4 @@ export NVM_DIR="$HOME/.nvm"
 
 export REACT_EDITOR=vim
 export REACT_EDITOR_CMD=/usr/local/bin/nvim
+source /usr/share/nvm/init-nvm.sh
