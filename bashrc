@@ -138,3 +138,5 @@ export NVM_DIR="$HOME/.nvm"
 export REACT_EDITOR=vim
 export REACT_EDITOR_CMD=/usr/local/bin/nvim
 source /usr/share/nvm/init-nvm.sh
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

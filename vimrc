@@ -161,3 +161,14 @@ let g:ale_fixers = {
 \}
 
 autocmd FileType make setlocal noexpandtab
+
+call coc#config("languageserver", {
+\  'ccls': {
+\   'command': 'ccls',
+\    'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
+\    'rootPatterns': ['.ccls', 'compile_commands.json', '.vim/', '.git/', '.hg/'],
+\    'initializationOptions': {
+\      'cacheDirectory': '/tmp/ccls'
+\    }
+\  }
+\})
