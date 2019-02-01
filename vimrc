@@ -10,9 +10,6 @@ Plug 'vigemus/iron.nvim'
 Plug 'w0rp/ale'
 
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-
-" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' }
 
 Plug 'mileszs/ack.vim'
 
@@ -148,7 +145,8 @@ command! -nargs=0 Format :call CocAction('format')
 " Use `:Fold` for fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
-nnoremap <silent> <C-s> :<C-u>Denite coc-symbols<cr>
+nnoremap <silent> <C-s> :<C-u>CocList -I outline<cr>
+nnoremap <silent> <C-x> :<C-u>CocList -I symbols<cr>
 
 let g:notes_directories = ['~/Dropbox/School Work/Fall2018/ARTHC/notes/']
 autocmd BufRead,BufNewFile *.note setlocal spell
