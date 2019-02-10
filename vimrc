@@ -146,6 +146,7 @@ command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 nnoremap <silent> <C-s> :<C-u>CocList -I outline<cr>
+nnoremap <silent> <C-x> :<C-u>CocList -I symbols<cr>
 
 let g:notes_directories = ['~/Dropbox/School Work/Fall2018/ARTHC/notes/']
 autocmd BufRead,BufNewFile *.note setlocal spell
