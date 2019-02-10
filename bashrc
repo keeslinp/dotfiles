@@ -116,8 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 export RUST_SRC_PATH=/usr/local/src/rust/src
 PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/.arc_install/arcanist/bin
@@ -128,6 +126,7 @@ PATH=$PATH:/usr/local/bin
 alias vim="nvim"
 export EDITOR="nvim"
 export VISUAL="nvim"
+# This has to be before fzf or all hell breaks loose
 set -o vi
 
 alias tm="tmux new-session -A -s main"
@@ -140,3 +139,5 @@ export REACT_EDITOR_CMD=/usr/local/bin/nvim
 source /usr/share/nvm/init-nvm.sh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
