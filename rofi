@@ -1,0 +1,16 @@
+# Rofi Colors
+rofi.color-enabled: true
+rofi.color-window: #E62f343f, #2f343f, #002f343f
+rofi.color-normal: #002f343f, #f3f4f5, #002f343f, #002f343f, #9575cd
+rofi.color-active: #2f343f, #268bd2, #2f343f, #2f343f, #26b759
+rofi.color-urgent: #2f343f, #dc322f, #2f343f, #2f343f, #ced91a
+
+# Window Style
+rofi.lines: 3
+rofi.eh: 2
+rofi.width: 100
+rofi.padding: 480
+rofi.bw: 0
+rofi.font: Roboto Light 22
+
+rofi.show-iconfs:true

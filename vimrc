@@ -7,8 +7,6 @@ Plug 'gaalcaras/ncm-R'
 
 Plug 'vigemus/iron.nvim'
 
-Plug 'w0rp/ale'
-
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 Plug 'mileszs/ack.vim'
@@ -36,17 +34,15 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
 Plug 'itchyny/lightline.vim'
 
 Plug 'yggdroot/indentline'
 
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-fugitive'
-" Note taking plugin
-Plug 'xolox/vim-notes'
-Plug 'xolox/vim-misc'
+
+Plug 'lervag/vimtex'
+
 " Initialize plugin system
 call plug#end()
 
@@ -90,7 +86,7 @@ inoremap <C-S-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-S-j> :m '>+1<CR>gv=gv
 vnoremap <C-S-k> :m '<-2<CR>gv=gv
 
-set updatetime=250
+set updatetime=300
 
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype c setlocal ts=2 sts=2 sw=2 expandtab
@@ -111,14 +107,15 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 " Required for operations modifying multiple buffers like rename.
 set hidden
 
+let maplocalleader = "\\"
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 inoremap <silent><expr> <c-n> coc#refresh()
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
+nnoremap <silent> K :call CocAction('doHover')<CR>
+autocmd CursorHold * silent call CocActionAsync('highlight')
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -147,18 +144,6 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 nnoremap <silent> <C-s> :<C-u>CocList -I outline<cr>
 nnoremap <silent> <C-x> :<C-u>CocList -I symbols<cr>
-
-let g:notes_directories = ['~/Dropbox/School Work/Fall2018/ARTHC/notes/']
-autocmd BufRead,BufNewFile *.note setlocal spell
-let g:notes_suffix = '.note'
-
-compiler cargo
-
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\}
-
-autocmd FileType make setlocal noexpandtab
 
 call coc#config("languageserver", {
 \  'ccls': {
