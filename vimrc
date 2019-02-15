@@ -23,6 +23,8 @@ Plug 'rust-lang/rust.vim'
 
 Plug 'mxw/vim-jsx'
 
+Plug 'tpope/vim-abolish'
+
 " Make sure you use single quotes
 
 Plug 'altercation/vim-colors-solarized'
@@ -40,8 +42,6 @@ Plug 'yggdroot/indentline'
 
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-fugitive'
-
-Plug 'lervag/vimtex'
 
 " Initialize plugin system
 call plug#end()
