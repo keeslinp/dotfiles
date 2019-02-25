@@ -144,14 +144,3 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 nnoremap <silent> <C-s> :<C-u>CocList -I outline<cr>
 nnoremap <silent> <C-x> :<C-u>CocList -I symbols<cr>
-
-call coc#config("languageserver", {
-\  'ccls': {
-\   'command': 'ccls',
-\    'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
-\    'rootPatterns': ['.ccls', 'compile_commands.json', '.vim/', '.git/', '.hg/'],
-\    'initializationOptions': {
-\      'cacheDirectory': '/tmp/ccls'
-\    }
-\  }
-\})

@@ -15,6 +15,7 @@
             "~/.vim": "vim",
             "~/.vimrc": "vimrc",
             "~/.config/nvim/init.vim": "vimrc",
+            "~/.config/nvim/coc-settings.json": "coc-settings.json",
             "~/.config/kitty/kitty.conf": "kitty.conf",
             "~/.config/alacritty/alacritty.yml": "alacritty.yml",
             "~/.config/sway/config": "sway",
