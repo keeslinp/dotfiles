@@ -130,14 +130,15 @@ export VISUAL="nvim"
 set -o vi
 
 alias tm="tmux new-session -A -s main"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export REACT_EDITOR=vim
 export REACT_EDITOR_CMD=/usr/local/bin/nvim
-source /usr/share/nvm/init-nvm.sh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export NOTION_HOME="$HOME/.notion"
+[ -s "$NOTION_HOME/load.sh" ] && \. "$NOTION_HOME/load.sh"
+
+export PATH="${NOTION_HOME}/bin:$PATH"
