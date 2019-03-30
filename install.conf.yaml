@@ -26,6 +26,8 @@
             "~/.tmux-linux.conf": "tmux-linux.conf",
             "~/scripts": "scripts",
             "~/.config/nvim/settings.json": "nvim_settings.json",
+            "~/.config/kak/kakrc": "kakrc",
+            "~/.config/kak-lsp/kak-lsp.toml": "kak-lsp.toml",
         }
     },
     {
