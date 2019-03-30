@@ -123,6 +123,7 @@ PATH=$PATH:~/.pub-cache/bin
 PATH=$PATH:/opt/dart-sdk-dev/bin
 PATH=$PATH:~/scripts
 PATH=$PATH:/usr/local/bin
+PATH=$PATH:~/Android/Sdk/platform-tools
 alias vim="nvim"
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -141,3 +142,5 @@ source /usr/share/nvm/init-nvm.sh
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export ANDROID_HOME=~/Android/Sdk

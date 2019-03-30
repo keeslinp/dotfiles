@@ -25,6 +25,8 @@ Plug 'mxw/vim-jsx'
 
 Plug 'tpope/vim-abolish'
 
+Plug 'posva/vim-vue'
+
 " Make sure you use single quotes
 
 Plug 'altercation/vim-colors-solarized'
@@ -42,6 +44,7 @@ Plug 'yggdroot/indentline'
 
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-fugitive'
+Plug 'dart-lang/dart-vim-plugin'
 
 " Initialize plugin system
 call plug#end()
@@ -90,7 +93,7 @@ set updatetime=300
 
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype c setlocal ts=2 sts=2 sw=2 expandtab
-set ts=4 sts=4 sw=4 expandtab
+" set ts=4 sts=4 sw=4 expandtab
 
 set backupdir=~/.vim/swp
 set directory=~/.vim/swp

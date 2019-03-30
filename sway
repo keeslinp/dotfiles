@@ -178,7 +178,7 @@ bindsym $mod+space exec "playerctl play-pause"
 bindsym XF86MonBrightnessUp exec light -A 10
 bindsym XF86MonBrightnessDown exec light -U 10
 
-exec --no-startup-id /usr/local/bin/redshift -O 3001 -m wayland
+exec --no-startup-id redshift -O 3001 -m wayland
 exec --no-startup-id dropbox
 exec --no-startup-id nm-applet 
 
