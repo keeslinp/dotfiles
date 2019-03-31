@@ -93,7 +93,7 @@ set updatetime=300
 
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype c setlocal ts=2 sts=2 sw=2 expandtab
-" set ts=4 sts=4 sw=4 expandtab
+set ts=4 sts=4 sw=4 expandtab
 
 set backupdir=~/.vim/swp
 set directory=~/.vim/swp

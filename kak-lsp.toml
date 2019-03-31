@@ -9,13 +9,13 @@ timeout = 1800 # seconds = 30 minutes
 [language.rust]
 filetypes = ["rust"]
 roots = ["Cargo.toml"]
-command = "rls"
+command = "ra_lsp_server"
 
 [language.javascript]
 filetypes = ["javascript"]
 roots = ["package.json"]
-command = "javascript-typescript-stdio"
-args = []
+command = "typescript-language-server"
+args = ["--stdio"]
 
 [language.json]
 filetypes = ["json"]

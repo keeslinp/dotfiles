@@ -25,6 +25,35 @@ plug "ul/kak-lsp" do %{
         set-option window lsp_server_configuration rust.clippy_preference="on"
     }
     hook global KakEnd .* lsp-exit
+    define-command -hidden lsp-jump-to-location -params 1 -docstring "Jump to location after fzf" %{
+      echo -debug "running"
+      echo -debug "%arg{1}"
+      evaluate-commands %sh{
+        file_name=$(echo "$1" | cut -f 1 -d:)
+        line_num=$(echo "$1" | cut -f 2 -d:)
+        col_num=$(expr $(echo "$1" | cut -f 3 -d:) - 1)
+        printf "edit %s\n" $file_name
+        printf "execute-keys %sggh%sl\n" $line_num $col_num
+      }
+    }
+    define-command -hidden lsp-show-locations -params 1 -docstring "Show locations in fzf" %{
+        # cut prevents bad text in a reference list from busting things \
+        fzf -items-cmd "echo '%arg{1}'" \
+        -kak-cmd %{lsp-jump-to-location}\
+        -filter 'cut -f 1,2,3 -d:' \
+        -preview -preview-cmd "--preview 'cat $(echo {} | cut -f 1 -d:) | nl | tail -n +$(echo {} | cut -f 2 -d:)'"
+    }
+    define-command -hidden -override lsp-show-document-symbol -params 2 -docstring "Render symbols" %{
+        evaluate-commands -try-client %opt[toolsclient] %{
+            echo "%arg{1}"
+            lsp-show-locations "%arg{2}"
+        }
+    }
+    define-command -hidden -override lsp-show-references -params 2 -docstring "Render references" %{
+      evaluate-commands -try-client %opt[toolsclient] %{
+            lsp-show-locations "%arg{2}"
+        }
+    }
 }
 
 # Turn Tabs into spaces
