@@ -66,3 +66,13 @@ add-highlighter global/ number-lines
 
 # Solarized
 colorscheme solarized-dark-termcolors
+
+hook global WinSetOption filetype=latex %{
+      set buffer makecmd "pdflatex '%val{buffile}'"
+      hook buffer BufWritePost .* %{
+        make
+        execute-keys "<c-o>"
+      }
+}
+
+add-highlighter global/ wrap
