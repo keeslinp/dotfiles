@@ -11,6 +11,7 @@ plug "ul/kak-lsp" do %{
     set-option global lsp_completion_trigger "execute-keys 'h<a-h><a-k>\S[^\h\n,=;*(){}\[\]]\z<ret>'"
     set-option global lsp_diagnostic_line_error_sign "!"
     set-option global lsp_diagnostic_line_warning_sign "?"
+    lsp-stop-on-exit-enable
     hook global WinSetOption filetype=(c|cpp|rust|javascript) %{
         map window normal <c-l> ": enter-user-mode lsp<ret>"
         lsp-enable-window
@@ -54,12 +55,62 @@ plug "ul/kak-lsp" do %{
             lsp-show-locations "%arg{2}"
         }
     }
+    map global user r ':lsp-rename-prompt<ret>' -docstring 'rename prompt'
+}
+
+hook global WinSetOption filetype=javascript %{
+  set buffer lintcmd 'npm run lint -- --format=/Users/joltdev/.notion/tools/image/node/10.15.3/6.4.1/lib/node_modules/eslint-formatter-kakoune'
+  lint-enable
+  lint
+
+  # Fix template highlights
+  remove-highlighter "shared/javascript/literal"
+  add-highlighter "shared/javascript/literal" region "`" (?<!\\)(\\\\)*` regions
+  add-highlighter "shared/javascript/literal/string" default-region fill string
+  add-highlighter "shared/javascript/literal/expr" region \$\{ \} ref javascript
+}
+
+define-command search-files -params 1 -docstring "Search files in the directory in fzf using ripgrep" %{
+  fzf -items-cmd "rg --line-buffered --vimgrep '%arg{1}' *" \
+    -kak-cmd %{lsp-jump-to-location} \
+    -filter "cut -f 1,2,3 -d:"
 }
 
 # Turn Tabs into spaces
 hook global InsertChar \t %{ exec -draft -itersel h@ }
 set global tabstop 2
 set global indentwidth 2
+
+#OS copy buffers
+define-command -hidden paste-os-buffer %{
+  execute-keys |
+  execute-keys %sh{
+    if [ -x "$(command -v pbpaste)" ]; then
+      printf "pbpaste"
+    else
+      printf "wl-paste"
+    fi
+  }
+  execute-keys <ret>
+}
+
+define-command -hidden copy-os-buffer %{
+  execute-keys <a-|>
+  execute-keys %sh{
+    if [ -x "$(command -v pbcopy)" ]; then
+      printf "pbcopy"
+    else
+      printf "wl-copy"
+    fi
+  }
+  execute-keys <ret>
+}
+
+# USER KEYBINDINGS
+map global normal '#' '<a-i>w*<a-n>' -docstring 'search for previous instance of word'
+map global user y ':copy-os-buffer<ret>' -docstring 'copy to mac buffer'
+map global user p ':paste-os-buffer<ret>' -docstring 'paste from mac buffer'
+map global user / ':comment-line<ret>' -docstring 'comment line'
 
 # Line numbers
 add-highlighter global/ number-lines
