@@ -17,7 +17,9 @@ bind '"' split-window -c "#{pane_current_path}"
 bind '%' split-window -h -c "#{pane_current_path}"
 
 bind r source-file ~/.tmux.conf \; display-message " ✱ tmux.conf is reloaded"
-
+unbind-key C-o
+bind-key -n C-l select-pane -R
+bind-key -n C-h select-pane -L
 
 # clipboard stuff
 set-window-option -g mode-keys vi
@@ -27,16 +29,11 @@ bind-key -T copy-mode-vi 'y' send-keys -X copy-selection-and-cancel
 if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux-osx.conf' 
 if-shell 'test "$(uname)" = "Linux"' 'source ~/.tmux-linux.conf' 
 
-run "resize-main-pane -p 70 -l main-vertical"
+bind C-r run "resize-main-pane -p 70 -l main-vertical"
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-urlview'
-
-# Other examples:
-# set -g @plugin 'github_username/plugin_name'
-# set -g @plugin 'git@github.com/user/plugin'
-# set -g @plugin 'git@bitbucket.com/user/plugin'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run -b '~/.tmux/plugins/tpm/tpm'

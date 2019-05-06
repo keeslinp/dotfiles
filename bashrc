@@ -123,24 +123,32 @@ PATH=$PATH:~/.pub-cache/bin
 PATH=$PATH:/opt/dart-sdk-dev/bin
 PATH=$PATH:~/scripts
 PATH=$PATH:/usr/local/bin
-PATH=$PATH:~/Android/Sdk/platform-tools
 alias vim="nvim"
-export EDITOR="nvim"
-export VISUAL="nvim"
+export EDITOR="kak"
+export VISUAL="kak"
 # This has to be before fzf or all hell breaks loose
 set -o vi
 
 alias tm="tmux new-session -A -s main"
 
 export REACT_EDITOR=vim
-export REACT_EDITOR_CMD=/usr/local/bin/nvim
+export REACT_EDITOR_CMD=/usr/local/bin/kak
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-export ANDROID_HOME=~/Android/Sdk
+# Android stuff
+export ANDROID_HOME=$HOME/Library/Android/sdk
+PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
+
 export NOTION_HOME="$HOME/.notion"
 [ -s "$NOTION_HOME/load.sh" ] && \. "$NOTION_HOME/load.sh"
 
 export PATH="${NOTION_HOME}/bin:$PATH"
+
+export PATH=~/.rbenv/shims:$PATH
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion

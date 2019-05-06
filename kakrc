@@ -13,7 +13,7 @@ plug "ul/kak-lsp" do %{
     set-option global lsp_diagnostic_line_warning_sign "?"
     lsp-stop-on-exit-enable
     hook global WinSetOption filetype=(c|cpp|rust|javascript) %{
-        map window normal <c-l> ": enter-user-mode lsp<ret>"
+        map window normal <c-k> ": enter-user-mode lsp<ret>"
         lsp-enable-window
         lsp-auto-hover-enable
         lsp-auto-hover-insert-mode-disable
