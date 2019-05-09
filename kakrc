@@ -6,16 +6,18 @@ plug "andreyorst/fzf.kak" config %{
 
 plug "ul/kak-lsp" do %{
     cargo build --release --locked
-    cargo install --force --path .
+    cargo install --force --path . # `--path .' is needed by recent versions of cargo
 } config %{
-    set-option global lsp_completion_trigger "execute-keys 'h<a-h><a-k>\S[^\h\n,=;*(){}\[\]]\z<ret>'"
-    set-option global lsp_diagnostic_line_error_sign "!"
-    set-option global lsp_diagnostic_line_warning_sign "?"
-    lsp-stop-on-exit-enable
-    hook global WinSetOption filetype=(c|cpp|rust|javascript) %{
+    set-option global lsp_diagnostic_line_error_sign '║'
+    set-option global lsp_diagnostic_line_warning_sign '┊'
+
+    define-command lsp-restart -docstring 'restart lsp server' %{ lsp-stop; lsp-start }
+
+    hook global WinSetOption filetype=(c|cpp|rust|javascript|typescript) %{
         map window normal <c-k> ": enter-user-mode lsp<ret>"
-        lsp-enable-window
+        set-option window lsp_hover_anchor false
         lsp-auto-hover-enable
+        lsp-enable-window
         lsp-auto-hover-insert-mode-disable
         set-option window idle_timeout 500
         set-face window DiagnosticError default+u
@@ -25,7 +27,6 @@ plug "ul/kak-lsp" do %{
     hook global WinSetOption filetype=rust %{
         set-option window lsp_server_configuration rust.clippy_preference="on"
     }
-    hook global KakEnd .* lsp-exit
     define-command -hidden lsp-jump-to-location -params 1 -docstring "Jump to location after fzf" %{
       echo -debug "running"
       echo -debug "%arg{1}"
@@ -56,6 +57,8 @@ plug "ul/kak-lsp" do %{
         }
     }
     map global user r ':lsp-rename-prompt<ret>' -docstring 'rename prompt'
+  
+    hook global KakEnd .* lsp-exit
 }
 
 hook global WinSetOption filetype=javascript %{

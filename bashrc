@@ -84,9 +84,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -123,7 +120,6 @@ PATH=$PATH:~/.pub-cache/bin
 PATH=$PATH:/opt/dart-sdk-dev/bin
 PATH=$PATH:~/scripts
 PATH=$PATH:/usr/local/bin
-alias vim="nvim"
 export EDITOR="kak"
 export VISUAL="kak"
 # This has to be before fzf or all hell breaks loose
@@ -131,7 +127,7 @@ set -o vi
 
 alias tm="tmux new-session -A -s main"
 
-export REACT_EDITOR=vim
+export REACT_EDITOR=kak
 export REACT_EDITOR_CMD=/usr/local/bin/kak
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

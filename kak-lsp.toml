@@ -11,11 +11,11 @@ filetypes = ["rust"]
 roots = ["Cargo.toml"]
 command = "rls"
 
-[language.javascript]
-filetypes = ["javascript"]
-roots = ["package.json"]
-command = "typescript-language-server"
-args = ["--stdio"]
+[language.typescript]
+filetypes = ["typescript"]
+roots = ["tsconfig.json"]
+command = "javascript-typescript-stdio"
+args = []
 
 [language.json]
 filetypes = ["json"]

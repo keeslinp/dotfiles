@@ -21,6 +21,7 @@
             "~/.config/sway/config": "sway",
             "~/.config/rofi/config": "rofi",
             "~/.bashrc": "bashrc",
+            "~/.bash_profile": "bash_profile",
             "~/.tmux.conf": "tmux",
             "~/.tmux-osx.conf": "tmux-osx.conf",
             "~/.tmux-linux.conf": "tmux-linux.conf",
