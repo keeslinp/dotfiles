@@ -29,12 +29,12 @@ plug "ul/kak-lsp" do %{
     }
     define-command -hidden -override lsp-show-document-symbol -params 2 -docstring "Render symbols" %{
         evaluate-commands -try-client %opt[toolsclient] %{
-            show-locations "%arg{2}"
+            show-locations "%arg{2}" 4
         }
     }
     define-command -hidden -override lsp-show-references -params 2 -docstring "Render references" %{
       evaluate-commands -try-client %opt[toolsclient] %{
-            show-locations "%arg{2}"
+            show-locations "%arg{2}" "1,4"
         }
     }
     map global user r ':lsp-rename-prompt<ret>' -docstring 'rename prompt'
@@ -69,15 +69,12 @@ define-command -hidden jump-to-location -params 1 -docstring "Jump to location a
   }
 }
 
-define-command -hidden show-locations -params 1 -docstring "Show locations in sk" %{
+define-command -hidden show-locations -params 2 -docstring "Show locations in sk" %{
   echo -debug %arg{1}
-  tmux-terminal-vertical sh -c "echo eval -client %val{client} \""jump-to-location $(echo '%arg{1}' | sk | cut -f 1,2,3 -d:)\"" | kak -p %val{session}"
+  tmux-terminal-vertical sh -c "echo eval -client %val{client} \""jump-to-location $(echo '%arg{1}' | sk --delimiter ':' --with-nth %arg{2} --preview 'cat -n {1} | sed -n {2},+40p' | cut -f 1,2,3 -d:)\"" | kak -p %val{session}"
 }
 
 define-command search-files -params 1 -docstring "Search files in the directory in fzf using ripgrep" %{
-  fzf -items-cmd "rg --line-buffered --vimgrep '%arg{1}' *" \
-    -kak-cmd %{jump-to-location} \
-    -filter "cut -f 1,2,3 -d:"
 }
 
 define-command -hidden skim-files %{

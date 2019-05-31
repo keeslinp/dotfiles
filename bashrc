@@ -124,7 +124,7 @@ PATH=$PATH:~/.arc_install/arcanist/bin
 PATH=$PATH:~/.pub-cache/bin
 PATH=$PATH:/opt/dart-sdk-dev/bin
 PATH=$PATH:~/scripts
-PATH=$PATH:/usr/local/bin
+PATH=/usr/local/bin:$PATH
 export EDITOR="kak"
 export VISUAL="kak"
 # This has to be before fzf or all hell breaks loose
