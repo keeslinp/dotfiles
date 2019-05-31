@@ -37,3 +37,5 @@ set -g @plugin 'tmux-plugins/tmux-urlview'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run -b '~/.tmux/plugins/tpm/tpm'
+
+set-option -g default-shell "/bin/bash"

@@ -102,9 +102,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+# Git bash autocomplete
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -113,6 +111,13 @@ if ! shopt -oq posix; then
   fi
 fi
 
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion || {
+    # if not found in /usr/local/etc, try the brew --prefix location
+    [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ] && \
+        . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+}
+
+# PATH stuff
 export RUST_SRC_PATH=/usr/local/src/rust/src
 PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/.arc_install/arcanist/bin
@@ -126,6 +131,7 @@ export VISUAL="kak"
 set -o vi
 
 alias tm="tmux new-session -A -s main"
+alias k="kakoune_daemon_script.sh"
 
 export REACT_EDITOR=kak
 export REACT_EDITOR_CMD=/usr/local/bin/kak
