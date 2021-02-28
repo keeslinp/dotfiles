@@ -125,6 +125,9 @@ PATH=$PATH:~/.pub-cache/bin
 PATH=$PATH:/opt/dart-sdk-dev/bin
 PATH=$PATH:~/scripts
 PATH=/usr/local/bin:$PATH
+
+export XDG_CONFIG_HOME=~/.config
+
 export EDITOR="kak"
 export VISUAL="kak"
 # This has to be before fzf or all hell breaks loose
@@ -139,18 +142,17 @@ export REACT_EDITOR_CMD=/usr/local/bin/kak
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f /usr/local/Cellar/sk/0.6.6/etc/bash_completion.d/ ] && source /usr/local/Cellar/sk/0.6.6/etc/bash_completion.d/*
 
 # Android stuff
 export ANDROID_HOME=$HOME/Library/Android/sdk
 PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
-
-export NOTION_HOME="$HOME/.notion"
-[ -s "$NOTION_HOME/load.sh" ] && \. "$NOTION_HOME/load.sh"
-
-export PATH="${NOTION_HOME}/bin:$PATH"
-
 export PATH=~/.rbenv/shims:$PATH
+# NODE VERSION
+eval "$(fnm env --multi)"
+[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+# tab multiplexer configuration: https://github.com/austinjones/tab-rs/
+source "/Users/pearcekeesling/Library/Application Support/tab/completion/tab.bash"
+# end tab configuration
+

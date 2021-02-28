@@ -1,0 +1,8 @@
+ctrl - h : yabai -m window --focus west
+shift + ctrl - right : yabai -m window --focus east
+
+shift + ctrl - l : yabai -m space --focus prev
+
+# cmd + alt - n : yabai -m space --create && \
+#                  index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+#                  yabai -m space --focus "${index}"

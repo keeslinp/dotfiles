@@ -1,13 +1,11 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
-plug "alexherbo2/connect.kak" config %{
-    define-command ranger -params .. -file-completion %(connect ranger %arg(@))
-}
-
-plug "ul/kak-lsp" do %{
-    cargo build --release --locked
-    cargo install --force --path . # `--path .' is needed by recent versions of cargo
+plug "kak-lsp/kak-lsp" do %{
+    cargo install --locked --force --path . # `--path .' is needed by recent versions of cargo
 } config %{
+
+    nop %sh{ (kak-lsp -s $kak_session -vvv ) > /tmp/kak-lsp.log 2>&1 < /dev/null & }
+
     set-option global lsp_diagnostic_line_error_sign '!'
     set-option global lsp_diagnostic_line_warning_sign '?'
 
@@ -19,14 +17,16 @@ plug "ul/kak-lsp" do %{
         lsp-auto-hover-enable
         lsp-enable-window
         lsp-auto-hover-insert-mode-disable
+        lsp-stop-on-exit-enable
+        set-option window lsp_auto_highlight_references true
         set-option window idle_timeout 1000
         set-face window DiagnosticError default+u
         set-face window DiagnosticWarning default+u
     }
 
-    hook global WinSetOption filetype=rust %{
-        set-option window lsp_server_configuration rust.clippy_preference="on"
-    }
+    # hook global WinSetOption filetype=rust %{
+    #     set-option window lsp_server_configuration rust.clippy_preference="on"
+    # }
     define-command -hidden -override lsp-show-document-symbol -params 2 -docstring "Render symbols" %{
         evaluate-commands -try-client %opt[toolsclient] %{
             show-locations "%arg{2}" 4
@@ -38,18 +38,26 @@ plug "ul/kak-lsp" do %{
         }
     }
     map global user r ':lsp-rename-prompt<ret>' -docstring 'rename prompt'
-  
-    hook global KakEnd .* lsp-exit
 }
 
-plug "andreyorst/powerline.kak" config %{
-  # powerline-theme solarized-dark-termcolors
+# plug "andreyorst/powerline.kak" config %{
+#   # powerline-theme solarized-dark-termcolors
+# }
+
+
+plug "alexherbo2/prelude.kak"
+plug "alexherbo2/explore.kak"
+plug "alexherbo2/terminal-mode.kak"
+plug "alexherbo2/connect.kak" config %{
+    require-module connect-fzf
+    require-module connect-lf
+    require-module connect-nnn
+    require-module terminal-mode
 }
 
-hook global WinSetOption filetype=javascript %{
-  set buffer lintcmd 'npm run lint -- --format=/Users/joltdev/.notion/tools/image/node/10.15.3/6.4.1/lib/node_modules/eslint-formatter-kakoune'
-  lint-enable
-  lint
+hook global WinSetOption filetype=(javascript|typescript) %{
+  # set window formatcmd 'yarn prettier --stdin --parser typescript'
+  # hook buffer BufWritePre .* %{format}
 
   # Fix template highlights
   remove-highlighter "shared/javascript/literal"
@@ -70,15 +78,27 @@ define-command -hidden jump-to-location -params 1 -docstring "Jump to location a
 }
 
 define-command -hidden show-locations -params 2 -docstring "Show locations in sk" %{
-  echo -debug %arg{1}
-  tmux-terminal-vertical sh -c "echo eval -client %val{client} \""jump-to-location $(echo '%arg{1}' | sk --delimiter ':' --with-nth %arg{2} --preview 'cat -n {1} | sed -n {2},+40p' | cut -f 1,2,3 -d:)\"" | kak -p %val{session}"
+  terminal-set global tmux tmux-terminal-vertical tmux-focus
+  connect-terminal sh -c "echo '%arg{1}' | sk --delimiter ':' --with-nth %arg{2} --preview 'bat --color=always -n {1} -H {2} -r $(expr {2} - 5):' | cut -f 1,2,3 -d: | xargs :send jump-to-location"
 }
 
 define-command search-files -params 1 -docstring "Search files in the directory in fzf using ripgrep" %{
 }
 
-define-command -hidden skim-files %{
-  tmux-terminal-vertical sh -c "echo eval -client %val{client} \""edit $(sk -c 'fd -t f')\"" | kak -p %val{session}"
+define-command browse -docstring "Exlore files in lf" %{
+  terminal-set global tmux tmux-terminal-horizontal tmux-focus
+  connect-terminal sh -c "tmux move-pane -bh -t 0 && OPENER=:edit lf"
+}
+
+define-command skim-files -params 1 %{
+  terminal-set global tmux tmux-terminal-vertical tmux-focus
+  connect-terminal sh -c %sh{
+    printf "sk -c 'fd -t f --color always"
+    if [ "$1" = true ] ; then
+      printf " --no-ignore"
+    fi
+    printf "' --ansi --preview 'bat --color always {}' | xargs :edit"
+  }
 }
 
 #OS copy buffers
@@ -107,7 +127,7 @@ define-command -hidden copy-os-buffer %{
 }
 
 # USER KEYBINDINGS
-map global normal <c-p> ': skim-files<ret>'
+map global normal <c-p> ': skim-files false<ret>'
 map global normal '#' '<a-i>w*<a-n>' -docstring 'search for previous instance of word'
 map global user y ':copy-os-buffer<ret>' -docstring 'copy to mac buffer'
 map global user p ':paste-os-buffer<ret>' -docstring 'paste from mac buffer'
@@ -116,9 +136,11 @@ map global user / ':comment-line<ret>' -docstring 'comment line'
 # Line numbers
 add-highlighter global/ number-lines
 
-# Solarized
-colorscheme solarized-dark-termcolors
+# Theme
+# colorscheme nord
 
+
+# Latex
 hook global WinSetOption filetype=latex %{
       set buffer makecmd "pdflatex '%val{buffile}'"
       hook buffer BufWritePost .* %{
@@ -132,5 +154,25 @@ hook global InsertChar \t %{ exec -draft -itersel h@ }
 set global tabstop 2
 set global indentwidth 2
 
+hook global WinSetOption filetype=(rust) %{
+  set global tabstop 4
+  set global indentwidth 4
+}
+
 
 add-highlighter global/ wrap
+
+
+#### ZIG STUFF
+plug "Vurich/zig-kak"
+hook global WinSetOption filetype=(zig) %{
+  set window formatcmd 'zig fmt --stdin'
+  # hook buffer InsertKey .* %{format}
+}
+
+#### Racket
+plug "KJ_Duncan/kakoune-racket.kak" domain "bitbucket.org"
+
+#### Kotlin
+# plug "KJ_Duncan/kakoune-kotlin.kak" domain "bitbucket.org"
+#
