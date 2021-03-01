@@ -48,3 +48,11 @@ vim.cmd([[autocmd BufEnter * lua require'completion'.on_attach()]])
 -- make git editor work better from term
 vim.cmd([[let $GIT_EDITOR = 'nvr -cc split --remote-wait']])
 vim.cmd([[autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete]])
+
+-- Format on save
+vim.api.nvim_exec([[
+augroup FormatAutogroup
+  autocmd!
+  autocmd BufWritePost *.js,*.rs,*.lua,*.tsx,*.ts FormatWrite
+augroup END
+]], true)
