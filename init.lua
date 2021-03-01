@@ -53,6 +53,6 @@ vim.cmd([[autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete]])
 vim.api.nvim_exec([[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.rs,*.lua,*.tsx,*.ts FormatWrite
+  autocmd BufWritePost *.js,*.rs,*.tsx,*.ts FormatWrite
 augroup END
 ]], true)

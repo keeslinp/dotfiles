@@ -7,7 +7,8 @@ local options = { noremap = true, silent=true }
 map('n', '<leader>p', ':lua require(\'telescope.builtin\').find_files()<cr>', options)
 map('n', '<leader>s', ':lua require(\'telescope.builtin\').live_grep()<cr>', options)
 map('n', '<leader>a', [[:lua require('telescope.builtin').lsp_code_actions()<cr>]], options)
-map('n', '<c-s>', [[:lua require('telescope.builtin').treesitter()<cr>]], options)
+map('n', '<c-s>', [[:lua require('telescope.builtin').lsp_document_symbols()<cr>]], options)
+map('n', 'gr', [[<cmd>lua require'telescope.builtin'.lsp_references()<cr>]], options)
 
 map("n", "<leader>cc", "<Plug>kommentary_line_default", {})
 map("v", "<leader>cc", "<Plug>kommentary_visual_default", {})
