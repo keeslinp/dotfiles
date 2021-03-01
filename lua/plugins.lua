@@ -59,7 +59,23 @@ return require('packer').startup(function()
 
     use 'neovim/nvim-lspconfig'
 
-    use 'nvim-lua/completion-nvim'
+    use {
+      'hrsh7th/nvim-compe',
+      config = function()
+        require('compe').setup {
+          enabled = true;
+          autocomplete = true;
+          documentation = true;
+          source = {
+            path = true;
+            buffer = true;
+            treesitter = true;
+            nvim_lsp = true;
+            nvim_lua = true;
+          }
+        }
+      end
+    }
 
     use 'alexaandru/nvim-lspupdate'
 

@@ -38,12 +38,8 @@ opt('w', 'wrap', false)                               -- Disable line wrap
 -- Config nvim-tree
 vim.g.nvim_tree_auto_close = 1
 
--- completion-nvim
-vim.g.completion_enable_auto_popup = 1
-
 -- cmds
 vim.cmd('colorscheme nord')
-vim.cmd([[autocmd BufEnter * lua require'completion'.on_attach()]])
 
 -- make git editor work better from term
 vim.cmd([[let $GIT_EDITOR = 'nvr -cc split --remote-wait']])
