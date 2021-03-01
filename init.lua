@@ -44,3 +44,7 @@ vim.g.completion_enable_auto_popup = 1
 -- cmds
 vim.cmd('colorscheme nord')
 vim.cmd([[autocmd BufEnter * lua require'completion'.on_attach()]])
+
+-- make git editor work better from term
+vim.cmd([[let $GIT_EDITOR = 'nvr -cc split --remote-wait']])
+vim.cmd([[autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete]])
