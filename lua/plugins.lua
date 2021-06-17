@@ -14,7 +14,28 @@ return require('packer').startup(function()
     use 'arcticicestudio/nord-vim'
     use {
       'nvim-telescope/telescope.nvim',
-      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }},
+      config = function()
+        local actions = require('telescope.actions')
+        require('telescope').setup{
+          defaults = {
+            mappings = {
+              i = {
+                ["<c-k>"] = actions.move_selection_previous,
+                ["<c-j>"] = actions.move_selection_next,
+              }
+            }
+          },
+          extensions = {
+            fzf = {
+              fuzzy = true,
+              override_generic_sorter = false,
+              override_file_sorter = true,
+              case_mode = "smart_case",
+            }
+          }
+        }
+      end
     }
     use {
       'lewis6991/gitsigns.nvim',
@@ -102,4 +123,12 @@ return require('packer').startup(function()
         })
       end
     }
+
+    --[[ use {
+      'pwntester/octo.nvim',
+      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope.nvim'}},
+      config = function()
+        require('telescope').load_extension('octo')
+      end
+    } ]]
 end)

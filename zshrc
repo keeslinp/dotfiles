@@ -1,5 +1,6 @@
 # PATH stuff
 PATH=$PATH:~/.cargo/bin
+PATH=$PATH:~/.rustup/toolchains/nightly-x86_64-apple-darwin/bin
 PATH=$PATH:~/.arc_install/arcanist/bin
 PATH=$PATH:~/.pub-cache/bin
 PATH=$PATH:/opt/dart-sdk-dev/bin
@@ -20,7 +21,7 @@ alias k="kakoune_daemon_script.sh"
 export REACT_EDITOR=nvim
 export REACT_EDITOR_CMD=/usr/local/bin/nvim
 
-export PATH="$HOME/.yarn/bin:/Users/pearcekeesling/Library/Python/3.8/bin/:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.yarn/bin:/Users/pearcekeesling/Library/Python/3.9/bin/:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
@@ -167,3 +168,4 @@ export BITBAR_API_TOKEN=dWFhT05hcUE2RXpxbU5jRVRzQ01KMW1rd0JSaWV0MGQ6
 source "/Users/pearcekeesling/Library/Application Support/tab/completion/zsh-history.zsh"
 # end tab configuration
 
+if [ -e /Users/pearcekeesling/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/pearcekeesling/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

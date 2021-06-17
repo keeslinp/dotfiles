@@ -186,12 +186,23 @@ gls.right[2] = {
 }
 
 -- Short status line
-gls.short_line_left[1] = {
-  BufferType = {
-    provider = 'FileTypeName',
-    highlight = { colors.fg, colors.section_bg },
-    separator = ' ',
-    separator_highlight = { colors.section_bg, colors.bg },
+gls.short_line_left = {
+  {
+    BufferType = {
+      provider = 'FileTypeName',
+      highlight = { colors.fg, colors.section_bg },
+      separator = ' ',
+      separator_highlight = { colors.section_bg, colors.bg },
+    }
+  },
+  {
+    BufferName = {
+      provider = { 'FileName', 'FileSize' },
+      condition = buffer_not_empty,
+      highlight = { colors.fg, colors.section_bg },
+      separator = " ",
+      separator_highlight = {colors.section_bg, colors.bg},
+    }
   }
 }
 

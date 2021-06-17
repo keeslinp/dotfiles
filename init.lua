@@ -30,10 +30,11 @@ opt('o', 'termguicolors', true)                       -- True color support
 opt('o', 'wildmode', 'list:longest')                  -- Command-line completion mode
 opt('o', 'inccommand', 'split')                       -- Visualize replacemenets
 opt('o', 'mouse', 'nv')
+opt('o', 'updatetime', 500)                           -- Set hover time to 500 ms
 opt('w', 'list', true)                                -- Show some invisible characters (tabs...)
 opt('w', 'number', true)                              -- Print line number
 -- opt('w', 'relativenumber', true)                      -- Relative line numbers
-opt('w', 'wrap', false)                               -- Disable line wrap
+opt('w', 'wrap', true)                               -- Disable line wrap
 
 -- Config nvim-tree
 vim.g.nvim_tree_auto_close = 1

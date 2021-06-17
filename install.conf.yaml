@@ -37,6 +37,7 @@
             "~/Library/Preferences/kak-lsp/kak-lsp.toml": "kak-lsp.toml",
             "~/.ctags": "ctags",
             "~/.ctags.d/.ctags": "ctags",
+            "~/.config/wezterm/wezterm.lua": "wezterm.lua",
         }
     },
     {
